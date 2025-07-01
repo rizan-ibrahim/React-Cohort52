@@ -42,8 +42,8 @@ const App = () => {
       <div className="products">
         {(activeCategory ? filteredProducts : productsData).map((product) => (
           <div key={product.id} className="product">
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
+            <img src={product.image} alt={product.title} />
+            <h3>{product.title}</h3>
             <p>{product.description}</p>
             <p>${product.price}</p>
           </div>
