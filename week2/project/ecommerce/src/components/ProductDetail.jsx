@@ -1,8 +1,6 @@
-// src/components/ProductDetail.js
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchProducts } from "../services/api";
+import { fetchProductById } from "../services/api";
 
 const ProductDetail = () => {
   const { id } = useParams(); // Get product id from the URL
@@ -14,11 +12,8 @@ const ProductDetail = () => {
     const getProduct = async () => {
       setLoading(true);
       try {
-        const data = await fetchProducts();
-        const selectedProduct = data.find(
-          (product) => product.id === parseInt(id)
-        );
-        setProduct(selectedProduct);
+        const data = await fetchProductById(id);
+        setProduct(data);
       } catch (err) {
         setError("Failed to fetch product details" + err.message);
       } finally {

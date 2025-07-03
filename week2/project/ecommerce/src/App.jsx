@@ -10,7 +10,6 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
-  const [filteredProducts, setFilteredProducts] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -38,7 +37,6 @@ const App = () => {
       try {
         const productsData = await fetchProducts(activeCategory);
         setProducts(productsData);
-        setFilteredProducts(productsData);
       } catch (err) {
         setError("Failed to fetch products: " + err.message);
       } finally {
@@ -50,16 +48,7 @@ const App = () => {
   }, [activeCategory]);
 
   const handleCategoryClick = (category) => {
-    if (activeCategory === category) {
-      setActiveCategory(null);
-      setFilteredProducts(products);
-    } else {
-      setActiveCategory(category);
-      const filtered = products.filter((product) =>
-        product.category.toLowerCase().includes(category.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-    }
+    setActiveCategory(activeCategory === category ? null : category);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -88,11 +77,10 @@ const App = () => {
 
               {/* PRODUCT LIST */}
               <div className="products">
-                {(activeCategory ? filteredProducts : products).map(
-                  (product) => (
-                    <ProductCard key={product.id} product={product} />
-                  )
-                )}
+                {products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+                ;
               </div>
             </div>
           }
