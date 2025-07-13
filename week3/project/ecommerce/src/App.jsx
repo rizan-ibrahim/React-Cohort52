@@ -37,13 +37,18 @@ const App = () => {
     }
   };
 
+  const handleHomeClick = () => {
+    setActiveCategory(null);
+    setFilteredProducts(null);
+  };
+
   if (loadingProducts || loadingCategories) return <div>Loading...</div>;
   if (errorProducts || errorCategories)
     return <div>Error: {errorProducts || errorCategories}</div>;
 
   return (
     <Router>
-      <Navbar />
+      <Navbar onHomeClick={handleHomeClick} />
       <Routes>
         <Route path="/favourites" element={<Favourites />} />
         <Route

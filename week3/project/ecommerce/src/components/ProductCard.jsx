@@ -1,14 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useFavourites } from "../context/FavouritesContext";
 import heartFilled from "../assets/heart-solid.svg?url";
 import heartEmpty from "../assets/heart-regular.svg?url";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
   const { id, image, title, description, price } = product;
   const { toggleFavourite, isFavourite } = useFavourites();
+
+  const handleCardClick = () => {
+    navigate(`/product/${id}`);
+  };
   return (
-    <div className="product">
-      <button onClick={() => toggleFavourite(id)} className="heart-button">
+    <div className="product" onClick={handleCardClick}>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleFavourite(id);
+        }}
+        className="heart-button"
+      >
         <img
           src={isFavourite(id) ? heartFilled : heartEmpty}
           alt="heart"
