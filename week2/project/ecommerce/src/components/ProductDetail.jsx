@@ -28,13 +28,15 @@ const ProductDetail = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
+    <div className="product-detail">
       {product ? (
         <>
-          <h2>{product.title}</h2>
           <img src={product.image} alt={product.title} />
-          <p>{product.description}</p>
-          <p>Price: ${product.price}</p>
+          <div className="product-info">
+            <h2>{product.title}</h2>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+          </div>
         </>
       ) : (
         <div>Product not found</div>

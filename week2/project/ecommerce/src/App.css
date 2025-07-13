@@ -31,3 +31,33 @@
   max-width: 100%;
   height: auto;
 }
+
+.product-detail {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.product-detail img {
+  width: 300px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-info p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
